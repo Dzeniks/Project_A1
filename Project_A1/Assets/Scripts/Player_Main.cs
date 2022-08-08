@@ -302,18 +302,19 @@ public class Player_Main : MonoBehaviour
             transform.position = new Vector3(0, 20, PlayerDeathPos.z - 15);
             UIaHubs.DieTab.SetActive(false);
             DeathBool = false;
+            ReviveAd.secondChance = true;
             PlayerMovement.playerSpeed = 10;
     }
 
     void CheckEnd(){
-        if((DeathBool && ReviveAd.StartedAD == false) || ReviveAd.secondChance){
+        if((DeathBool && !ReviveAd.StartedAD) || ReviveAd.secondChance){
             EndD();
         }
     }
     void SaveStats()
     {
         AllCoins += playerCoins;
-        if (Score > PlayerPrefs.GetFloat("BestScore")){
+        if (Score >= PlayerPrefs.GetInt("BestScore")){
             PlayerPrefs.SetInt("BestScore", Score);
         }
         PlayerPrefs.SetInt("AllCoins", AllCoins);

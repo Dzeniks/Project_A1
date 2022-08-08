@@ -2,20 +2,24 @@ using System;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Mediation;
+using TMPro;
+
+ 
 public class BtnShopAd : MonoBehaviour
 {
-  public shopMenu ShopMenu;
-  public int AllCoins;
+    public shopMenu ShopMenu;
+    public int AllCoins;
+    public TextMeshProUGUI RewText;
 
-  IRewardedAd ad;
-  string adUnitId = "Rewarded_Android";
-  string gameId = "4487579";
-
-InitializationOptions options = new InitializationOptions();
+    IRewardedAd ad;
+    string adUnitId = "Rewarded_Android";
+    string gameId = "4487579";
+    InitializationOptions options = new InitializationOptions();
 
         void Start(){
           InitServices();
         }
+
         public async void InitServices()
         {
             try
@@ -31,7 +35,6 @@ InitializationOptions options = new InitializationOptions();
                 InitializationFailed(e);
             }
         }
-
         public void SetupAd()
         {
             //Create
@@ -73,6 +76,7 @@ InitializationOptions options = new InitializationOptions();
         void AdLoaded(object sender, EventArgs args)
         {
             Debug.Log("Ad loaded");
+            RewText.text = $"{(int)(PlayerPrefs.GetInt("AllCoins") * 0.15)}";
         }
 
         void AdFailedLoad(object sender, LoadErrorEventArgs args)
@@ -115,7 +119,7 @@ InitializationOptions options = new InitializationOptions();
         {
             Debug.Log($"Received reward: type:{e.Type}; amount:{e.Amount}");
             AllCoins = PlayerPrefs.GetInt("AllCoins");
-            AllCoins += 666;
+            AllCoins += (int)(PlayerPrefs.GetInt("AllCoins") * 0.15);
             PlayerPrefs.SetInt("AllCoins", AllCoins);
             PlayerPrefs.Save();
         }

@@ -148,12 +148,12 @@ public class Way_Main : MonoBehaviour
                 while (wallPosts.Contains(randomPosZ) && coinPosts.Contains(randomPosZ))
                 {
                     randomPosZ = Random.Range(playerDistance + 10, DiffWayLenght);
-                    coinPosts.Add(randomPosZ);
                 }
                 if (!wallPosts.Contains(randomPosZ) && !coinPosts.Contains(randomPosZ))
                 { 
                     Instantiate(GCoin, new Vector3(randomPosX, (float)2.5, randomPosZ),
                         Quaternion.Euler(new Vector3(0, 90, 0))).tag = "GCoinClone";
+                    coinPosts.Add(randomPosZ);
                 }
             }
             // XP generator //
@@ -164,12 +164,12 @@ public class Way_Main : MonoBehaviour
                 while (wallPosts.Contains(randomPosZXP) && coinPosts.Contains(randomPosZXP) && XPPosts.Contains(randomPosZXP))
                 {
                     randomPosZXP = Random.Range(playerDistance + 10, DiffWayLenght);
-                    coinPosts.Add(randomPosZXP);
                 }
                 if (!wallPosts.Contains(randomPosZXP) && !coinPosts.Contains(randomPosZXP) && !XPPosts.Contains(randomPosZXP))
                 { 
                     Instantiate(XPStar, new Vector3(randomPosX, (float)1, randomPosZXP),
                         Quaternion.Euler(new Vector3(0, 90, 0))).tag = "XPStarClone";
+                    coinPosts.Add(randomPosZXP);
                 }
             }
             // Create End line
@@ -267,12 +267,10 @@ public class Way_Main : MonoBehaviour
                     // change randomPosZXP
                     randomPosZChest = Random.Range(playerDistance + 10, playerDistance + 100);
                 }
-
-
             }
         }
         // Destroy every GCoinClone behind player
-        foreach (var GCC in GameObject.FindGameObjectsWithTag("GCoinClone"))
+        foreach (GameObject GCC in GameObject.FindGameObjectsWithTag("GCoinClone"))
         {
             if (((int)GCC.transform.position.z + 25)< (int)GameObject.Find("Player").transform.position.z)
             {
@@ -280,7 +278,7 @@ public class Way_Main : MonoBehaviour
             }
         }
         // Destroy every WallClone behind player
-        foreach (var WC in GameObject.FindGameObjectsWithTag("WallClone"))
+        foreach (GameObject WC in GameObject.FindGameObjectsWithTag("WallClone"))
         {
             if (((int)WC.transform.position.z + 25)< (int)GameObject.Find("Player").transform.position.z)
             {
@@ -295,6 +293,8 @@ public class Way_Main : MonoBehaviour
             GCc.transform.Rotate(0, (float)0.1, 0);
         }
     }
+
+
     private void WayExtender()
     {
         // Way extender
