@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
-using Unity.Services.Core;
-using Unity.Services.Mediation;
 
 
 public class shopMenu : MonoBehaviour

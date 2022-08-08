@@ -7,11 +7,12 @@ public class ReviveAd : MonoBehaviour
 {
     public bool StartedAD, secondChance, rewardEarned;
     public Player_Main PlayerMain;
+    public GameObject DieTab;
 
     IRewardedAd ad;
-        string adUnitId = "Rewarded_Android";
-        string gameId = "4487579";
-        InitializationOptions options = new InitializationOptions();
+    string adUnitId = "Rewarded_Android";
+    string gameId = "4487579";
+    InitializationOptions options = new InitializationOptions();
 
         void Start(){
           InitServices();
@@ -57,10 +58,10 @@ public class ReviveAd : MonoBehaviour
             if (ad.AdState == AdState.Loaded)
             {
                 ad.Show();
+                StartedAD = true;
+                DieTab.SetActive(false);
             }
             
-            StartedAD = true;
-            secondChance = true;
         }
 
         void InitializationComplete()
@@ -90,24 +91,26 @@ public class ReviveAd : MonoBehaviour
         void AdShown(object sender, EventArgs args)
         {
             Debug.Log("Ad shown!");
-                  
+                
+            StartedAD = true;
         }
 
         void AdClosed(object sender, EventArgs e)
         {
             // Pre-load the next ad
-            ad.Load();
+            //ad.Load();
             Debug.Log("Ad has closed");
             
-            StartedAD = false;
-            Invoke("RewardCheck", 1);  
             // Execute logic after an ad has been closed.
+            
         }
 
         void AdClicked(object sender, EventArgs e)
         {
             Debug.Log("Ad has been clicked");
             // Execute logic after an ad has been clicked.
+            
+            StartedAD = true;
         }
 
         void AdFailedShow(object sender, ShowErrorEventArgs args)
@@ -126,14 +129,16 @@ public class ReviveAd : MonoBehaviour
         {
             Debug.Log($"Received reward: type:{e.Type}; amount:{e.Amount}");
             rewardEarned = true;
+            StartedAD = false;
+            Invoke("RewardCheck", 1);  
         }
 
         void RewardCheck(){
-    if(rewardEarned == true){
-      PlayerMain.Rvs();
-    }
-    else{
-     PlayerMain.EndD();
-    }
+          if(rewardEarned == true){
+            PlayerMain.Rvs();
+          }
+          else{
+            PlayerMain.EndD();
+          }
     }
 }

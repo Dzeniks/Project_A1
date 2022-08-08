@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Wall
-  - GoldCoin
+  - GCoinClone
+  - WallClone
+  - ChestClone
+  - XPStarClone
+  - EndLineClone
+  - TrailClone
   layers:
   - Default
   - TransparentFX
