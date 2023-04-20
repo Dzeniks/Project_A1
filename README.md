@@ -27,12 +27,7 @@
 
 </ul>
 
-<style>
-  .row {
-    display: flex;
-    justify-content: space-between;
-  }
-</style>
+
 
 <h3>In menu:</h3>
 <div class="row">
