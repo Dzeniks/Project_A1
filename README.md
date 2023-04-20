@@ -27,19 +27,29 @@
 
 </ul>
 
+<style>
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+
 <h3>In menu:</h3>
-<img style="padding: 2.5% 12.5%" src="./project-A/menu.jpg" alt="menu" width="20%" height="20%"/>
-<img style="padding: 2.5% 12.5%" src="./project-A/abbility-inventory.jpg" alt="ability-inventory" width="20%" height="20%"/>
-
+<div class="row">
+<img style="padding: 2.5% 8.5%" src="./project-A/menu.jpg" alt="menu" width="20%" height="20%"/>
+<img style="padding: 2.5% 8.5%" src="./project-A/abbility-inventory.jpg" alt="ability-inventory" width="20%" height="20%"/>
+</div>
 <h3>In shop:</h3>
-
+<div class="row">
 <img style="padding: 2%" src="./project-A/character-shop.jpg" alt="character-shop" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/reward-ad.jpg" alt="reward-ad" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/chest.jpg" alt="chest" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/chest-anim.jpg" alt="chest-anim" width="20%" height="20%"/>
-
+</div>
 <h3>In game:</h3>
+<div class="row">
 <img style="padding: 2%" src="./project-A/game1.jpg" alt="game1" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/game2.jpg" alt="game2" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/death.jpg" alt="death" width="20%" height="20%"/>
 <img style="padding: 2%" src="./project-A/sett.jpg" alt="settings" width="20%" height="20%"/>
+</div>
